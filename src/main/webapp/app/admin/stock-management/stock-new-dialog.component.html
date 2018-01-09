@@ -1,0 +1,71 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myUserLabel">
+            Create or edit a Stock</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;
+        </button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group">
+            <label>Code</label>
+            <input type="text" class="form-control" name="code" #codeInput="ngModel"
+                   [(ngModel)]="stock.code" [readonly]="stock.id"  required minlength="1" maxlength="5" pattern="^[_'.A-Za-z0-9-]*$">
+
+            <div *ngIf="codeInput.dirty && codeInput.invalid">
+                <small class="form-text text-danger"
+                       *ngIf="codeInput.errors.required">
+                    This field is required.
+                </small>
+
+                <small class="form-text text-danger"
+                       *ngIf="codeInput.errors.maxlength">
+                    This field cannot be longer than 5 characters.
+                </small>
+
+                <small class="form-text text-danger"
+                       *ngIf="codeInput.errors.pattern"
+                >
+                    This field can only contain letters and digits.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Name</label>
+            <input type="text" class="form-control" name="name" #nameInput="ngModel"
+                   [(ngModel)]="stock.name" required minlength="1" maxlength="100">
+
+            <div *ngIf="nameInput.dirty && nameInput.invalid">
+                <small class="form-text text-danger"
+                       *ngIf="nameInput.errors.required">
+                    This field is required.
+                </small>
+
+                <small class="form-text text-danger"
+                       *ngIf="nameInput.errors.maxlength"
+                >
+                    This field cannot be longer than 100 characters.
+                </small>
+
+                <small class="form-text text-danger"
+                       *ngIf="nameInput.errors.pattern">
+                    This field can only contain letters and digits.
+                </small>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span
+        >Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-floppy-o"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>
