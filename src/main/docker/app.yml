@@ -1,0 +1,14 @@
+version: '2'
+services:
+    netaswork2-app:
+        image: netaswork2
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://netaswork2-postgresql:5432/netasWork2
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    netaswork2-postgresql:
+        extends:
+            file: postgresql.yml
+            service: netaswork2-postgresql
