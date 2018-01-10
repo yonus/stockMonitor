@@ -3,6 +3,7 @@ import { Router, ActivatedRouteSnapshot, NavigationEnd } from '@angular/router';
 
 import { Title } from '@angular/platform-browser';
 import {JhiEventManager} from "ng-jhipster";
+import {Principal} from "../../shared";
 
 @Component({
     selector: 'stock-main',
@@ -14,6 +15,7 @@ export class StockMainComponent implements OnInit {
         private titleService: Title,
         private router: Router,
         private eventManager: JhiEventManager,
+        private principal: Principal
     ) {}
 
     private getPageTitle(routeSnapshot: ActivatedRouteSnapshot) {
@@ -31,7 +33,11 @@ export class StockMainComponent implements OnInit {
             }
         });
         this.eventManager.subscribe("authenticationSuccess",(content)=>{
-            console.log(content);
+            this.principal.identity().then((account) => {
+                if(this.principal.hasAnyAuthority(['ROLE_ADMIN'])){
+                    this.router.navigate(['/stock-management']);
+                }
+            });
         });
     }
 }

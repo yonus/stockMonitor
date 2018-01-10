@@ -20,4 +20,6 @@ public interface StockModelEntityRepository extends JpaRepository<StockModelEnti
 
     @Cacheable(cacheNames = STOCK_BY_CODE_CACHE_NAME)
     Optional<StockModelEntity> findByCode(String code);
+
+
 }

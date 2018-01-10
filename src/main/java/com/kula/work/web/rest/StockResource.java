@@ -5,6 +5,7 @@ import com.kula.work.config.Constants;
 import com.kula.work.security.AuthoritiesConstants;
 import com.kula.work.service.StockService;
 import com.kula.work.service.dto.StockDTO;
+import com.kula.work.service.dto.UserStockDTO;
 import com.kula.work.web.rest.errors.BadRequestAlertException;
 import com.kula.work.web.rest.errors.StockCodeAlreadyUsedException;
 import com.kula.work.web.rest.util.HeaderUtil;
@@ -91,6 +92,11 @@ public class StockResource {
         return ResponseUtil.wrapOrNotFound(newStockDTO,
             HeaderUtil.createAlert("A stock is updated with identifier " + stockDTO.getCode(), stockDTO.getCode()));
 
+    }
+
+    @GetMapping("user/{login}")
+    public UserStockDTO getUserStocks(@PathVariable String login){
+         return stockService.getUserStocks(login);
     }
 
 

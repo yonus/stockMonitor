@@ -187,4 +187,42 @@
                   tableName="stock"/>
 
     </changeSet>
+
+
+    <changeSet id="00000000000003" author="yunus">
+        <createSequence sequenceName="user_stock_id_sequence" startValue="1000" incrementBy="1"/>
+
+        <createTable tableName="user_stock">
+            <column name="user_stock_id" type="bigint"  defaultValueSequenceNext="user_stock_id_sequence">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="user_stock_code" type="varchar(5)">
+            </column>
+
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp" defaultValueDate="${now}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="timestamp"/>
+        </createTable>
+        <createIndex indexName="idx_user_stock_code"
+                     tableName="user_stock"
+                     unique="true">
+            <column name="user_stock_code" type="varchar(5)"/>
+        </createIndex>
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/stockapp/user_stock.csv"
+                  separator=";"
+                  tableName="stock"/>
+
+    </changeSet>
 </databaseChangeLog>

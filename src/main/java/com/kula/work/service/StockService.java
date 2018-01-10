@@ -1,9 +1,15 @@
 package com.kula.work.service;
 
+import com.kula.work.domain.User;
 import com.kula.work.domain.stock.entity.StockModelEntity;
 import com.kula.work.repository.StockModelEntityRepository;
+import com.kula.work.repository.UserRepository;
+import com.kula.work.repository.UserStockModelEntityRepository;
 import com.kula.work.service.dto.StockDTO;
+import com.kula.work.service.dto.UserDTO;
+import com.kula.work.service.dto.UserStockDTO;
 import com.kula.work.service.mapper.StockMapper;
+import com.kula.work.service.mapper.UserStockMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.CacheManager;
@@ -18,7 +24,11 @@ public class StockService {
 
     private final Logger log = LoggerFactory.getLogger(UserService.class);
     private StockModelEntityRepository stockModelEntityRepository;
+    private UserRepository userRepository;
+    private UserStockModelEntityRepository userStockModelEntityRepository;
+
     private StockMapper stockMapper;
+    private UserStockMapper userStockMapper;
     private CacheManager cacheManager;
 
 
@@ -67,6 +77,20 @@ public class StockService {
             }).map(StockDTO::new);
     }
 
+
+    public UserStockDTO getUserStocks(UserDTO userDto){
+        User user = userRepository.findOne(userDto.getId());
+        return getUserStocks(user);
+    }
+
+    public UserStockDTO getUserStocks(String loginName){
+       return userRepository.findOneByLogin(loginName).map(this::getUserStocks).orElse(null);
+    }
+
+    public UserStockDTO getUserStocks(User user){
+        return userStockModelEntityRepository.findUserStockModelEntitiesByUser_Id(user.getId())
+            .map(result -> userStockMapper.userStockModelEntityToUserStockDTO(user,result)).orElse(new UserStockDTO(new UserDTO(user)));
+    }
 
     private void clearCaches(StockDTO stockDTO){
         cacheManager.getCache(StockModelEntityRepository.ALL_STOCK_CACHE_NAME).clear();
