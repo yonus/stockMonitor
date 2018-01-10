@@ -198,6 +198,7 @@
             </column>
 
             <column name="user_stock_code" type="varchar(5)">
+                <constraints nullable="false"/>
             </column>
 
             <column name="user_id" type="bigint">
@@ -214,15 +215,14 @@
             <column name="last_modified_date" type="timestamp"/>
         </createTable>
         <createIndex indexName="idx_user_stock_code"
-                     tableName="user_stock"
-                     unique="true">
+                     tableName="user_stock">
             <column name="user_stock_code" type="varchar(5)"/>
         </createIndex>
 
         <loadData encoding="UTF-8"
                   file="config/liquibase/stockapp/user_stock.csv"
                   separator=";"
-                  tableName="stock"/>
+                  tableName="user_stock"/>
 
     </changeSet>
 </databaseChangeLog>
