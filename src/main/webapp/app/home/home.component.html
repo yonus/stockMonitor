@@ -1,9 +1,14 @@
 <div class="row">
-    <div class="col-md-3">
 
-        <p>
-            Please login as username:admin, password:admin
-        </p>
+    <div class="col-md-3" *ngFor="let stockPriceModel of stocks; trackBy:trackIdentity " >
+
+        <div class="stock-square">
+            <span class="stock-info stock-code">{{stockPriceModel.stockDTO.code}}</span>
+            <span class="stock-info stock-name">{{stockPriceModel.stockDTO.name}}</span>
+            <span class="stock-info stock-price">{{stockPriceModel.price}}</span>
+            <span class="stock-info stock-date">{{stockPriceModel.lastFetchTime | date:'dd/MM/yy HH:mm:ss' }}</span>
+
+        </div>
 
     </div>
 </div>

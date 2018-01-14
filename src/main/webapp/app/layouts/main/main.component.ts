@@ -3,7 +3,7 @@ import { Router, ActivatedRouteSnapshot, NavigationEnd } from '@angular/router';
 
 import { Title } from '@angular/platform-browser';
 import {JhiEventManager} from "ng-jhipster";
-import {Principal} from "../../shared";
+import {Principal, StockPriceChangeTrackerService} from "../../shared";
 
 @Component({
     selector: 'stock-main',
@@ -15,7 +15,8 @@ export class StockMainComponent implements OnInit {
         private titleService: Title,
         private router: Router,
         private eventManager: JhiEventManager,
-        private principal: Principal
+        private principal: Principal,
+        private stockPriceTrackerService:StockPriceChangeTrackerService
     ) {}
 
     private getPageTitle(routeSnapshot: ActivatedRouteSnapshot) {
@@ -34,10 +35,23 @@ export class StockMainComponent implements OnInit {
         });
         this.eventManager.subscribe("authenticationSuccess",(content)=>{
             this.principal.identity().then((account) => {
-                if(this.principal.hasAnyAuthority(['ROLE_ADMIN'])){
+                if(this.principal.hasAnyAuthority(["ROLE_USER"])){
+                    this.router.navigate(['/user-stock','user']);
+                }else if(this.principal.hasAnyAuthority(['ROLE_ADMIN'])){
                     this.router.navigate(['/stock-management']);
                 }
             });
+        });
+
+        this.registerPriceTracker();
+    }
+
+
+    private registerPriceTracker(){
+        this.stockPriceTrackerService.connect();
+        this.stockPriceTrackerService.subscribe();
+        this.stockPriceTrackerService.receive().subscribe((data)=>{
+            this.eventManager.broadcast({name:"priceChangeEvent", content:data})
         });
     }
 }

@@ -1,4 +1,4 @@
-package com.kula.work.service.dto;
+package com.kula.work.service.dto.user;
 
 import com.kula.work.config.Constants;
 

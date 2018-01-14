@@ -1,4 +1,4 @@
-package com.kula.work.service.dto;
+package com.kula.work.service.dto.stock;
 
 import com.kula.work.domain.stock.entity.StockModelEntity;
 

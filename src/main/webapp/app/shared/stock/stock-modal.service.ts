@@ -1,8 +1,8 @@
-import { Injectable, Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import {Injectable, Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 
-import { User, UserService } from '../../shared';
+import {User, UserService} from '../../shared';
 import {StockService} from "./stock.service";
 import {StockModel} from "./stock.model";
 
@@ -10,11 +10,9 @@ import {StockModel} from "./stock.model";
 export class StockModalService {
     private ngbModalRef: NgbModalRef;
 
-    constructor(
-        private modalService: NgbModal,
-        private router: Router,
-        private stockService: StockService
-    ) {
+    constructor(private modalService: NgbModal,
+                private router: Router,
+                private stockService: StockService) {
         this.ngbModalRef = null;
     }
 
@@ -41,15 +39,43 @@ export class StockModalService {
     }
 
     stockModalRef(component: Component, stock: StockModel): NgbModalRef {
-        const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
+        const modalRef = this.modalService.open(component, {size: 'lg', backdrop: 'static'});
         modalRef.componentInstance.stock = stock;
         modalRef.result.then((result) => {
-            this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true, queryParamsHandling: 'merge' });
+            this.router.navigate([{outlets: {popup: null}}], {replaceUrl: true, queryParamsHandling: 'merge'});
             this.ngbModalRef = null;
         }, (reason) => {
-            this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true, queryParamsHandling: 'merge' });
+            this.router.navigate([{outlets: {popup: null}}], {replaceUrl: true, queryParamsHandling: 'merge'});
             this.ngbModalRef = null;
         });
         return modalRef;
+    }
+
+    openTradeCommand(component: Component, login:string ,command:string ,userStockInfo?: any, allStocks?:StockModel[]): Promise<NgbModalRef> {
+        return new Promise<NgbModalRef>((resolve, reject) => {
+            const isOpen = this.ngbModalRef !== null;
+            if (isOpen) {
+                resolve(this.ngbModalRef);
+            }
+
+            // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
+            setTimeout(() => {
+                const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
+                modalRef.componentInstance.command = command;
+                modalRef.componentInstance.userStockInfo = userStockInfo;
+                modalRef.componentInstance.allStocks = allStocks;
+                modalRef.componentInstance.login = login;
+                modalRef.result.then((result) => {
+                    this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true, queryParamsHandling: 'merge' });
+                    this.ngbModalRef = null;
+                }, (reason) => {
+                    this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true, queryParamsHandling: 'merge' });
+                    this.ngbModalRef = null;
+                });
+                this.ngbModalRef = modalRef;
+                resolve(this.ngbModalRef);
+            }, 0);
+
+        });
     }
 }

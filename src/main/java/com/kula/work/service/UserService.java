@@ -1,6 +1,5 @@
 package com.kula.work.service;
 
-import com.kula.work.config.CacheConfiguration;
 import com.kula.work.domain.Authority;
 import com.kula.work.domain.User;
 import com.kula.work.repository.AuthorityRepository;
@@ -9,7 +8,7 @@ import com.kula.work.repository.UserRepository;
 import com.kula.work.security.AuthoritiesConstants;
 import com.kula.work.security.SecurityUtils;
 import com.kula.work.service.util.RandomUtil;
-import com.kula.work.service.dto.UserDTO;
+import com.kula.work.service.dto.user.UserDTO;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

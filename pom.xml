@@ -5,7 +5,7 @@
     <groupId>com.kula.work</groupId>
     <artifactId>netas-work-2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    
     <name>Netas Work 2</name>
 
     <properties>

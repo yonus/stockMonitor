@@ -1,6 +1,6 @@
 package com.kula.work.web.rest.vm;
 
-import com.kula.work.service.dto.UserDTO;
+import com.kula.work.service.dto.user.UserDTO;
 import javax.validation.constraints.Size;
 
 /**

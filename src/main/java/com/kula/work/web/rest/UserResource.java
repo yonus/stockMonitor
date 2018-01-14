@@ -7,7 +7,7 @@ import com.kula.work.repository.UserRepository;
 import com.kula.work.security.AuthoritiesConstants;
 import com.kula.work.service.MailService;
 import com.kula.work.service.UserService;
-import com.kula.work.service.dto.UserDTO;
+import com.kula.work.service.dto.user.UserDTO;
 import com.kula.work.web.rest.errors.BadRequestAlertException;
 import com.kula.work.web.rest.errors.EmailAlreadyUsedException;
 import com.kula.work.web.rest.errors.LoginAlreadyUsedException;

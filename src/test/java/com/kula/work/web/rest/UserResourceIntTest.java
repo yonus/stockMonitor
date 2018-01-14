@@ -1,14 +1,13 @@
 package com.kula.work.web.rest;
 
 import com.kula.work.NetasWork2App;
-import com.kula.work.config.CacheConfiguration;
 import com.kula.work.domain.Authority;
 import com.kula.work.domain.User;
 import com.kula.work.repository.UserRepository;
 import com.kula.work.security.AuthoritiesConstants;
 import com.kula.work.service.MailService;
 import com.kula.work.service.UserService;
-import com.kula.work.service.dto.UserDTO;
+import com.kula.work.service.dto.user.UserDTO;
 import com.kula.work.service.mapper.UserMapper;
 import com.kula.work.web.rest.errors.ExceptionTranslator;
 import com.kula.work.web.rest.vm.ManagedUserVM;

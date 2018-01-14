@@ -2,7 +2,7 @@ package com.kula.work.service.mapper;
 
 import com.kula.work.domain.Authority;
 import com.kula.work.domain.User;
-import com.kula.work.service.dto.UserDTO;
+import com.kula.work.service.dto.user.UserDTO;
 
 import org.springframework.stereotype.Service;
 

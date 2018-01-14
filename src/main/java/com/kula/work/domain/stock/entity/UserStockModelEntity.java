@@ -6,6 +6,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 
 @Entity
 @Table(name = "user_stock")
@@ -30,6 +31,16 @@ public class UserStockModelEntity extends AbstractAuditingEntity {
     )
     private StockModelEntity stockModelEntity;
 
+    @Column(name = "stock_count" , nullable = false )
+    @Min(0)
+    private int count;
+
+    public  UserStockModelEntity(){}
+
+    public UserStockModelEntity(User user , StockModelEntity stockModelEntity){
+        this.user = user;
+        this.stockModelEntity = stockModelEntity;
+    }
 
     public Long getId() {
         return id;
@@ -53,5 +64,13 @@ public class UserStockModelEntity extends AbstractAuditingEntity {
 
     public void setStockModelEntity(StockModelEntity stockModelEntity) {
         this.stockModelEntity = stockModelEntity;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }

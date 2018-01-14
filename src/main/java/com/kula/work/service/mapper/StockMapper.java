@@ -1,7 +1,7 @@
 package com.kula.work.service.mapper;
 
 import com.kula.work.domain.stock.entity.StockModelEntity;
-import com.kula.work.service.dto.StockDTO;
+import com.kula.work.service.dto.stock.StockDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

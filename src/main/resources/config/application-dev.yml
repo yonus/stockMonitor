@@ -48,7 +48,7 @@ spring:
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
             hibernate.cache.region.factory_class: com.hazelcast.hibernate.HazelcastCacheRegionFactory
-            hibernate.cache.hazelcast.instance_name: netasWork2
+            hibernate.cache.hazelcast.instance_name: stockMonitor
             hibernate.cache.use_minimal_puts: true
             hibernate.cache.hazelcast.use_lite_member: true
     mail:

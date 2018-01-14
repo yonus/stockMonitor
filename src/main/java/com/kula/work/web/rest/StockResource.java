@@ -1,11 +1,10 @@
 package com.kula.work.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
-import com.kula.work.config.Constants;
+import com.kula.work.domain.User;
 import com.kula.work.security.AuthoritiesConstants;
+import com.kula.work.security.SecurityUtils;
 import com.kula.work.service.StockService;
-import com.kula.work.service.dto.StockDTO;
-import com.kula.work.service.dto.UserStockDTO;
+import com.kula.work.service.dto.stock.*;
 import com.kula.work.web.rest.errors.BadRequestAlertException;
 import com.kula.work.web.rest.errors.StockCodeAlreadyUsedException;
 import com.kula.work.web.rest.util.HeaderUtil;
@@ -16,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -99,6 +97,20 @@ public class StockResource {
          return stockService.getUserStocks(login);
     }
 
+    @PostMapping("command")
+    ResponseEntity<StockCommandDTO> executeCommand(@RequestBody StockCommandDTO  stockCommandDTO){
+        String login = SecurityUtils.getCurrentUserLogin().orElseThrow(() -> new BadRequestAlertException("Current user not found", "User","NOTSESSIONUSER"));
+         if(!login.equals(stockCommandDTO.getLogin())){
+             throw new BadRequestAlertException("Current user not matched", "User","NOTMATCHUSER");
+         }
+         stockService.executeCommand(stockCommandDTO);
+        return ResponseEntity.ok().headers(HeaderUtil.createAlert( "The commad is successfull", "00000")).body(stockCommandDTO);
+    }
+
+    @GetMapping("prices")
+    public List<StockCurrentPriceDTO> getStockPrices(){
+        return stockService.getStockPrices();
+    }
 
 
 

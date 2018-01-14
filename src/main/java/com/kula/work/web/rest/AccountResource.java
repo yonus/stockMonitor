@@ -7,7 +7,7 @@ import com.kula.work.repository.UserRepository;
 import com.kula.work.security.SecurityUtils;
 import com.kula.work.service.MailService;
 import com.kula.work.service.UserService;
-import com.kula.work.service.dto.UserDTO;
+import com.kula.work.service.dto.user.UserDTO;
 import com.kula.work.web.rest.errors.*;
 import com.kula.work.web.rest.vm.KeyAndPasswordVM;
 import com.kula.work.web.rest.vm.ManagedUserVM;

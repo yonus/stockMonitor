@@ -17,6 +17,8 @@ export * from './constants/pagination.constants';
 export * from './stock/stock.service';
 export * from './stock/stock.model';
 export * from './stock/stock-modal.service'
+export * from './stock/stock-command.model'
+export * from './stock/stock-price-change-tracker.service'
 export * from './shared.module';
 
 

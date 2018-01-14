@@ -13,6 +13,8 @@ import {StockAccountModule} from "./account/account.module";
 import {customHttpProvider} from "./blocks/interceptor/http.provider";
 import {StockService} from "./shared/stock/stock.service";
 import {StockAppAdminModule} from "./admin/admin.module";
+import {UserStockModule} from "./user-stock";
+
 
 
 
@@ -25,6 +27,7 @@ import {StockAppAdminModule} from "./admin/admin.module";
         StockHomeModule,
         StockAccountModule,
         StockAppAdminModule,
+        UserStockModule,
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-'}),
     ],
     declarations: [ // add compoment, directivei pipe that is used for this module
@@ -35,6 +38,7 @@ import {StockAppAdminModule} from "./admin/admin.module";
     ],
     providers: [
         customHttpProvider(),
+
 
     ],
     bootstrap: [StockMainComponent]

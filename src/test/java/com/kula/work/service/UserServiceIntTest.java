@@ -4,7 +4,7 @@ import com.kula.work.NetasWork2App;
 import com.kula.work.config.Constants;
 import com.kula.work.domain.User;
 import com.kula.work.repository.UserRepository;
-import com.kula.work.service.dto.UserDTO;
+import com.kula.work.service.dto.user.UserDTO;
 import com.kula.work.service.util.RandomUtil;
 
 import org.apache.commons.lang3.RandomStringUtils;

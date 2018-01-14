@@ -4,10 +4,12 @@ import { RouterModule } from '@angular/router';
 
 
 import { HOME_ROUTE, HomeComponent } from './';
+import {CommonModule} from "@angular/common";
 
 @NgModule({
     imports: [
-        RouterModule.forChild([ HOME_ROUTE ])
+        RouterModule.forChild([ HOME_ROUTE ]),
+        CommonModule
     ],
     declarations: [
         HomeComponent,

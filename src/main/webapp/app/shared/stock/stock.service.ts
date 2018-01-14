@@ -8,6 +8,8 @@ import 'rxjs/add/observable/throw';
 
 import {StockModel} from "./stock.model";
 import {ResponseWrapper} from "../model/response-wrapper.model";
+import {StockCommandModel} from "./stock-command.model";
+import {StockPriceModel} from "./stock-price.model";
 
 @Injectable()
 export class StockService {
@@ -21,6 +23,11 @@ export class StockService {
 
      getStocks():Observable<StockModel[]>{
         return this.http.get(this.resourceUrl+"/allStocks").map(res => res.json());
+     }
+
+     getStockPrices():Observable<StockPriceModel[]>{
+         return this.http.get(this.resourceUrl+"/prices").map(res => res.json());
+
      }
 
      getStockByCode(code:string):Observable<StockModel>{
@@ -43,6 +50,15 @@ export class StockService {
      delete(code:string):Observable<Response>{
         return this.http.delete(this.resourceUrl+"/"+code);
      }
+
+     getUserStockInfo(login:string):Observable<any>{
+        return this.http.get(this.resourceUrl+"/user/"+login).map(res => res.json());
+     }
+
+     stockCommand(command:StockCommandModel):Observable<any>{
+        return this.http.post(this.resourceUrl+"/command",command).map(res => this.convertResponse(res));
+     }
+
 
 
     private convertResponse(res: Response): ResponseWrapper {

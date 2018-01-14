@@ -1,0 +1,55 @@
+<div class="row">
+    <div class="col-12">
+
+        <div class="row" *ngIf="userStockInfo; else loadingUserStock">
+            <div class="col-12">
+                <h1 class="user-tite">Your Stocks</h1>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th><span>Code</span> <span class="fa fa-sort"></span></th>
+                            <th><span>Name</span> <span class="fa fa-sort"></span></th>
+                            <th><span>Amount</span> <span class="fa fa-sort"></span></th>
+                            <th><span>Price</span> <span class="fa fa-sort"></span></th>
+                            <th><span>Last Fecth Date</span> <span class="fa fa-sort"></span></th>
+                        </tr>
+                        </thead>
+                        <tbody *ngIf="userStockInfo.stockCountAndPriceDTOS">
+                        <tr *ngFor="let stockCountAndPriceDTO of userStockInfo.stockCountAndPriceDTOS;">
+                            <td><a [routerLink]="['../stock-management', stockCountAndPriceDTO.code]">{{stockCountAndPriceDTO.stockDTO.code}}</a>
+                            </td>
+
+                            <td>{{stockCountAndPriceDTO.stockDTO.name}}</td>
+                            <td>{{stockCountAndPriceDTO.totalCount}}</td>
+                            <td>{{stockCountAndPriceDTO.currentPriceDTO.price}}</td>
+
+                            <td>{{stockCountAndPriceDTO.currentPriceDTO.lastFetchTime | date:'dd/MM/yy HH:mm:ss'}}</td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row command-buttons">
+                    <div class="col-12">
+                        <button type="button"  class="btn btn-success" (click)="buyStock()">
+                            <span class="fa fa-floppy-o"></span>&nbsp;<span>Buy</span>
+                        </button>
+                        <button type="button"  class="btn btn-danger" (click)="sellStock()">
+                            <span class="fa fa-floppy-o"></span>&nbsp;<span>Sell</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <ng-template #loadingUserStock>
+            <div class="row">
+                <div class="col-12 loadig-page">
+                    <h1> Your stocks is loading. Please Wait</h1>
+                    <i class="fa fa-spinner" aria-hidden="true"></i>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+</div>

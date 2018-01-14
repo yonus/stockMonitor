@@ -8,7 +8,7 @@ import com.kula.work.repository.AuthorityRepository;
 import com.kula.work.repository.UserRepository;
 import com.kula.work.security.AuthoritiesConstants;
 import com.kula.work.service.MailService;
-import com.kula.work.service.dto.UserDTO;
+import com.kula.work.service.dto.user.UserDTO;
 import com.kula.work.web.rest.errors.ExceptionTranslator;
 import com.kula.work.web.rest.vm.KeyAndPasswordVM;
 import com.kula.work.web.rest.vm.ManagedUserVM;
@@ -31,7 +31,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.Instant;
-import java.time.LocalDate;
 
 import java.util.*;
 

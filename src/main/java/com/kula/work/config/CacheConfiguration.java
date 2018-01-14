@@ -49,13 +49,13 @@ public class CacheConfiguration {
     @Bean
     public HazelcastInstance hazelcastInstance(JHipsterProperties jHipsterProperties) {
         log.debug("Configuring Hazelcast");
-        HazelcastInstance hazelCastInstance = Hazelcast.getHazelcastInstanceByName("netasWork2");
+        HazelcastInstance hazelCastInstance = Hazelcast.getHazelcastInstanceByName("stockMonitor");
         if (hazelCastInstance != null) {
             log.debug("Hazelcast already initialized");
             return hazelCastInstance;
         }
         Config config = new Config();
-        config.setInstanceName("netasWork2");
+        config.setInstanceName("stockMonitor");
         config.getNetworkConfig().setPort(5701);
         config.getNetworkConfig().setPortAutoIncrement(true);
 

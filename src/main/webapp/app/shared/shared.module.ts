@@ -22,6 +22,7 @@ import {AppAlertErrorComponent} from "./alert/alert-error.component";
 import {StockService} from "./stock/stock.service";
 import {LoginModalService, LoginService, UserService} from "../../app/shared";
 import {StockModalService} from "./";
+import {StockPriceChangeTrackerService} from "./stock/stock-price-change-tracker.service";
 
 
 
@@ -54,7 +55,8 @@ import {StockModalService} from "./";
         UserService,
         UserRouteAccessService,
         StockService,
-        StockModalService
+        StockModalService,
+        StockPriceChangeTrackerService
 
 
     ],

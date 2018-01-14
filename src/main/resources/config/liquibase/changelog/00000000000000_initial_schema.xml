@@ -205,6 +205,10 @@
                 <constraints nullable="false"/>
             </column>
 
+            <column name="stock_count" type="integer">
+                <constraints nullable="false"/>
+            </column>
+
             <column name="created_by" type="varchar(50)">
                 <constraints nullable="false"/>
             </column>

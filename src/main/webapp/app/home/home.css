@@ -22,3 +22,22 @@ only screen and (                min-resolution: 2dppx) {
     }
 }
 
+
+
+.stock-square{
+    width: 150px;
+    height: 120px;
+    background-color: #105cb6;
+    border:solid 1px #11b0ff;
+    color:white;
+    margin: 15px;
+    padding: 5px;
+}
+
+.stock-square .stock-info{
+    display: block;
+    font-size: 15px;
+    font-weight: bolder;
+    text-align: center;
+    margin-top: 5px;
+}
