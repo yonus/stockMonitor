@@ -27,7 +27,7 @@ public class MongoConfig {
     public MongoTemplate mongoTemplate() throws IOException {
         EmbeddedMongoFactoryBean mongo = new EmbeddedMongoFactoryBean();
         mongo.setBindIp(this.host);
-        mongo.setPort(Integer.valueOf(this.port));
+        mongo.setPort(Integer.valueOf(12034));
         MongoClient mongoClient = mongo.getObject();
         MongoTemplate mongoTemplate = new MongoTemplate(mongoClient, this.database);
         System.out.print("Embedded mongo is up");
