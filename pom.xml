@@ -5,7 +5,7 @@
     <groupId>com.kula.work</groupId>
     <artifactId>netas-work-2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    
+
     <name>Netas Work 2</name>
 
     <properties>
@@ -325,7 +325,24 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-messaging</artifactId>
         </dependency>
-        <!-- jhipster-needle-maven-add-dependency -->
+
+        <dependency>
+            <groupId>de.flapdoodle.embed</groupId>
+            <artifactId>de.flapdoodle.embed.mongo</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cz.jirutka.spring</groupId>
+            <artifactId>embedmongo-spring</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

@@ -19,6 +19,15 @@
                 </a>
             </li>
 
+            <li *jhiHasAnyAuthority="'ROLE_USER'"  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" [routerLink]="['user-stock',loginUser]" (click)="collapseNavbar()">
+                    <span>
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <span>My Stocks</span>
+                    </span>
+                </a>
+            </li>
+
 
 
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">

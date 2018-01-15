@@ -35,9 +35,9 @@ export class StockMainComponent implements OnInit {
         });
         this.eventManager.subscribe("authenticationSuccess",(content)=>{
             this.principal.identity().then((account) => {
-                if(this.principal.hasAnyAuthority(["ROLE_USER"])){
-                    this.router.navigate(['/user-stock','user']);
-                }else if(this.principal.hasAnyAuthority(['ROLE_ADMIN'])){
+                if(this.principal.hasAnyAuthorityDirect(['ROLE_USER'])){
+                    this.router.navigate(['/user-stock',account.login]);
+                }else if(this.principal.hasAnyAuthorityDirect(['ROLE_ADMIN'])){
                     this.router.navigate(['/stock-management']);
                 }
             });

@@ -13,7 +13,7 @@ import {JhiEventManager} from "ng-jhipster";
 })
 export class UserStockComponent implements OnInit {
    private routeSubscriber;
-   private userStockInfo;
+   userStockInfo;
    private login;
 
   constructor(private route: ActivatedRoute,
@@ -25,6 +25,9 @@ export class UserStockComponent implements OnInit {
 
   ngOnInit() {
    this.routeSubscriber = this.route.params.subscribe(params =>{
+
+
+
        let login = params["login"];
        this.login = login;
        this.getUserStokInfo(login).subscribe(userStockInfo => {
@@ -36,6 +39,8 @@ export class UserStockComponent implements OnInit {
                this.userStockInfo = userStockInfo;
            });
        })
+
+
    })
   }
 

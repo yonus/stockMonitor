@@ -14,8 +14,8 @@ import {timeout} from "rxjs/operator/timeout";
 })
 export class HomeComponent implements OnInit {
 
-    private stocks:StockPriceModel[];
-    private stockValues:Iterable<StockPriceModel>;
+     stocks:StockPriceModel[];
+     stockValues:Iterable<StockPriceModel>;
     constructor(private stockService:StockService,
                 private eventManager :JhiEventManager) {
     }

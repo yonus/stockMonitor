@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 //import { ProfileService } from '../profiles/profile.service';
-import { Principal, LoginModalService, LoginService } from '../../shared';
+import {Principal, LoginModalService, LoginService, AccountService} from '../../shared';
 
 import { VERSION } from '../../app.constants';
 
@@ -21,11 +21,12 @@ export class NavbarComponent implements OnInit {
     swaggerEnabled: boolean;
     modalRef: NgbModalRef;
     version: string;
-
+    loginUser: String;
     constructor(
         private loginService: LoginService,
         private principal: Principal,
         private loginModalService: LoginModalService,
+        private accountService:AccountService,
         //private profileService: ProfileService,
         private router: Router
     ) {
@@ -40,6 +41,13 @@ export class NavbarComponent implements OnInit {
             this.swaggerEnabled = profileInfo.swaggerEnabled;
         });
         **/
+       this.principal.getAuthenticationState().subscribe((identity) => {
+           if(identity) {
+               this.loginUser = identity.login;
+           }else{
+               this.loginUser = null;
+           }
+       });
     }
 
     collapseNavbar() {

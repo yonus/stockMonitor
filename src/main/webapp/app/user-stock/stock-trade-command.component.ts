@@ -11,13 +11,13 @@ import {JhiEventManager} from "ng-jhipster";
 })
 export class StockTradeCommandCompoment implements  OnInit{
     private command;
-    private userStockInfo;
+     userStockInfo;
     private allStocks:StockModel[]
-    private feasibleStock:StockModel[];
-    private selectedStock:StockModel;
-    private isBuyButtonHidden = false;
-    private isSellButtonHidden = false;
-    private stockCommand:StockCommandModel;
+     feasibleStock:StockModel[];
+     selectedStock:StockModel;
+     isBuyButtonHidden = false;
+     isSellButtonHidden = false;
+     stockCommand:StockCommandModel;
     private login:String;
 
     constructor(private activeModal: NgbActiveModal,
