@@ -101,10 +101,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/account/reset-password/finish").permitAll()
             .antMatchers("/api/profile-info").permitAll()
             .antMatchers("/api/stock/allStocks").permitAll()
+            .antMatchers("/api/stock/prices").permitAll()
             .antMatchers("/api/stock/user/**").permitAll()
 
             .antMatchers("/api/**").authenticated()
-            .antMatchers("/websocket/tracker").hasAuthority(AuthoritiesConstants.ADMIN)
+            .antMatchers("/websocket/tracker").permitAll()
             .antMatchers("/websocket/**").permitAll()
             .antMatchers("/management/health").permitAll()
             .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
