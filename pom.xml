@@ -3,10 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.kula.work</groupId>
-    <artifactId>netas-work-2</artifactId>
+    <artifactId>stockmonitor</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>Netas Work 2</name>
+    <name>StockMonitor</name>
 
     <properties>
         <!-- Build properties -->

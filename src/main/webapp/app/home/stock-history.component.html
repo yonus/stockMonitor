@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-12">
+    <div class="col-12" *ngIf="stock">
         <p>
            <h1>{{stock.code}}-{{stock.name}} History </h1>
         </p>
@@ -7,10 +7,10 @@
 </div>
 
 
-<div class="row">
+<div class="row" *ngIf="stockHistories">
     <div class="col-12" *ngFor="let history of stockHistories">
 
-        <h3>{{history.date| date:"date:'dd/MM/yy HH:mm:ss'"}}-{{history.price}} </h3>
+        <h4>{{history.date| date:'dd/MM/yy HH:mm:ss'}}-{{history.price}} </h4>
 
     </div>
 </div>

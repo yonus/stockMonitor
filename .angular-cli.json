@@ -1,7 +1,7 @@
 {
     "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
     "project": {
-        "name": "netas-work-2"
+        "name": "stock-monitor"
     },
     "apps": [{
         "root": "src/main/webapp",

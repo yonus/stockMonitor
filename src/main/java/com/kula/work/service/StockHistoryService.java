@@ -2,6 +2,7 @@ package com.kula.work.service;
 
 import com.kula.work.service.dto.stock.StockCurrentPriceDTO;
 import com.kula.work.service.dto.stock.StockHistoryDTO;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,6 @@ public class StockHistoryService {
     }
 
     public List<StockHistoryDTO> getStockHistory(String code){
-       return  mongoTemplate.find(Query.query(where("code").is(code)),StockHistoryDTO.class,HISTORY_COLLECTION);
+       return  mongoTemplate.find(Query.query(where("code").is(code)).with(new Sort(Sort.Direction.DESC,"lastFetchTime")).limit(1000),StockHistoryDTO.class,HISTORY_COLLECTION);
     }
 }

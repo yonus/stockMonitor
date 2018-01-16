@@ -22,7 +22,7 @@ export class StockHistoryComponent implements OnInit {
       this.routeSub = this.route.params.subscribe(params =>{
           let code = params["code"];
           this.stockService.getStockByCode(code).subscribe(s => {this.stock = s});
-          this.stockService.getStockHistory(code).subscribe(history => {history = this.stockHistories});
+          this.stockService.getStockHistory(code).subscribe(history => {this.stockHistories=history});
       })
   }
 

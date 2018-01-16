@@ -1,7 +1,7 @@
 {
-  "name": "netas-work-2",
+  "name": "stock-monitor",
   "version": "0.0.0",
-  "description": "Description for netasWork2",
+  "description": "Description for stock monitor",
   "private": true,
   "license": "UNLICENSED",
   "cacheDirectories": [

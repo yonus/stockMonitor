@@ -1,6 +1,6 @@
 {
-  "name": "NetasWork2",
-  "short_name": "NetasWork2",
+  "name": "StockMonitor",
+  "short_name": "StockMonitor",
   "icons": [
       {
           "src": "./content/images/logo-jhipster.png",
