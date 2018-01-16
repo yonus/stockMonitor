@@ -104,7 +104,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/stock/prices").permitAll()
             .antMatchers("/api/stock/history/*").permitAll()
             .antMatchers("/api/stock/user/**").permitAll()
-
+            .antMatchers("/api/stock/**").permitAll()
             .antMatchers("/api/**").authenticated()
             .antMatchers("/websocket/tracker").permitAll()
             .antMatchers("/websocket/**").permitAll()
