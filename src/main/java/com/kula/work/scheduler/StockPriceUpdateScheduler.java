@@ -1,5 +1,6 @@
 package com.kula.work.scheduler;
 
+import com.kula.work.service.StockHistoryService;
 import com.kula.work.service.StockPriceService;
 import com.kula.work.service.StockService;
 import com.kula.work.service.dto.stock.StockCurrentPriceDTO;
@@ -28,20 +29,22 @@ public class StockPriceUpdateScheduler {
     private StockService stockService;
     private StockPriceService stockPriceService;
     private StockPriceChangeService stockPriceChangeService;
-
     private Random random;
-
+    private StockHistoryService stockHistoryService;
     public  StockPriceUpdateScheduler(StockService stockService,
                                       StockPriceService  stockPriceService,
-                                      StockPriceChangeService stockPriceChangeService){
+                                      StockPriceChangeService stockPriceChangeService,
+                                      StockHistoryService stockHistoryService){
 
         this.stockService = stockService;
         this.stockPriceService = stockPriceService;
         this.stockPriceChangeService = stockPriceChangeService;
+        this.stockHistoryService = stockHistoryService;
+
         this.random = new Random();
     }
 
-    @Scheduled(fixedRate = 3000)
+    @Scheduled(fixedRate = 4000)
     public void updateStocksRandomly() {
         List<StockDTO>  allStockDTOS = stockService.getStockDTOS();
         allStockDTOS.forEach(stockDTO -> {
@@ -54,6 +57,7 @@ public class StockPriceUpdateScheduler {
             }
             stockCurrentPriceDTO.setLastFetchTime(LocalDateTime.now());
             stockPriceService.updateStockPrice(stockCurrentPriceDTO);
+            stockHistoryService.insertStockHistory(stockCurrentPriceDTO);
             stockPriceChangeService.publishPriceChange(stockCurrentPriceDTO);
         });
         log.info("All Stocks is updated  at the time  {}", dateFormat.format(new Date()));

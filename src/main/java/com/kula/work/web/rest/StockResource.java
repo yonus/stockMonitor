@@ -3,6 +3,7 @@ package com.kula.work.web.rest;
 import com.kula.work.domain.User;
 import com.kula.work.security.AuthoritiesConstants;
 import com.kula.work.security.SecurityUtils;
+import com.kula.work.service.StockHistoryService;
 import com.kula.work.service.StockService;
 import com.kula.work.service.dto.stock.*;
 import com.kula.work.web.rest.errors.BadRequestAlertException;
@@ -29,9 +30,14 @@ public class StockResource {
 
     private StockService stockService;
 
-    public StockResource(StockService stockService){
+    private StockHistoryService stockHistoryService;
+
+    public StockResource(StockService stockService,StockHistoryService stockHistoryService){
         this.stockService  = stockService;
+        this.stockHistoryService = stockHistoryService;
     }
+
+
 
     @GetMapping("/allStocks")
     public List<StockDTO> getAllStocks(){
@@ -112,6 +118,11 @@ public class StockResource {
         return stockService.getStockPrices();
     }
 
+
+    @GetMapping("history/{code}")
+    public List<StockHistoryDTO> getStockHistory(@PathVariable String code){
+       return this.stockHistoryService.getStockHistory(code);
+    }
 
 
 }
