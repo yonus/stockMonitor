@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-12">
+        <p>
+           <h1>{{stock.code}}-{{stock.name}} History </h1>
+        </p>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12" *ngFor="let history of stockHistories">
+
+        <h3>{{history.date| date:"date:'dd/MM/yy HH:mm:ss'"}}-{{history.price}} </h3>
+
+    </div>
+</div>
+
