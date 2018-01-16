@@ -1,16 +1,17 @@
 package com.kula.work.config;
 
 import com.mongodb.MongoClient;
-import cz.jirutka.spring.embedmongo.EmbeddedMongoFactoryBean;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
-import java.io.IOException;
+import static java.util.Collections.singletonList;
 
 @Configuration
-public class MongoConfig {
+public class MongoConfig  {
 
     private String database;
     private String host;
@@ -23,17 +24,19 @@ public class MongoConfig {
          this.port = port;
     }
 
+
+
     @Bean
-    public MongoTemplate mongoTemplate() throws IOException {
-        EmbeddedMongoFactoryBean mongo = new EmbeddedMongoFactoryBean();
-        mongo.setBindIp(this.host);
-        mongo.setPort(Integer.valueOf(12034));
-        MongoClient mongoClient = mongo.getObject();
-        MongoTemplate mongoTemplate = new MongoTemplate(mongoClient, this.database);
-        System.out.print("Embedded mongo is up");
+    public MongoClient mongoClient() {
+        return new MongoClient(singletonList(new ServerAddress("127.0.0.1", 27017)));
+    }
+
+
+
+    @Bean
+    public MongoTemplate mongoTemplate() throws Exception {
+        MongoTemplate mongoTemplate = new MongoTemplate(mongoClient(),"test");
         return mongoTemplate;
-
-
     }
 
 }
