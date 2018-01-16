@@ -2,7 +2,7 @@
 
     <div class="col-md-3" *ngFor="let stockPriceModel of stocks; trackBy:trackIdentity " >
 
-        <div class="stock-square">
+        <div class="stock-square" [routerLink]="['history',stockPriceModel.stockDTO.code]">
             <span class="stock-info stock-code">{{stockPriceModel.stockDTO.code}}</span>
             <span class="stock-info stock-name">{{stockPriceModel.stockDTO.name}}</span>
             <span class="stock-info stock-price">{{stockPriceModel.price}}</span>

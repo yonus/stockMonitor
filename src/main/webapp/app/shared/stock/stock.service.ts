@@ -10,6 +10,7 @@ import {StockModel} from "./stock.model";
 import {ResponseWrapper} from "../model/response-wrapper.model";
 import {StockCommandModel} from "./stock-command.model";
 import {StockPriceModel} from "./stock-price.model";
+import {StockHistoryModel} from "./stock-history.model";
 
 @Injectable()
 export class StockService {
@@ -57,6 +58,11 @@ export class StockService {
 
      stockCommand(command:StockCommandModel):Observable<any>{
         return this.http.post(this.resourceUrl+"/command",command).map(res => this.convertResponse(res));
+     }
+
+     getStockHistory(code:String):Observable<StockHistoryModel[]>{
+         return this.http.get(this.resourceUrl+"/history/"+code).map(res => res.json());
+
      }
 
 
