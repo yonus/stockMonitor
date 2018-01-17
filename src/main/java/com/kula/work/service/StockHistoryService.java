@@ -37,4 +37,7 @@ public class StockHistoryService {
     public List<StockHistoryDTO> getStockHistory(String code){
        return  mongoTemplate.find(Query.query(where("code").is(code)).with(new Sort(Sort.Direction.DESC,"lastFetchTime")).limit(1000),StockHistoryDTO.class,HISTORY_COLLECTION);
     }
-}
+
+    public void removeFirst100Record(){
+        mongoTemplate.remove(new Query().limit(1000),HISTORY_COLLECTION);
+    }}
