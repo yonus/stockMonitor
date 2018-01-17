@@ -25,7 +25,7 @@ public class StockPriceUpdateScheduler {
     private static final Logger log = LoggerFactory.getLogger(StockPriceUpdateScheduler.class);
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-
+    private int resetTime = 0;
     private StockService stockService;
     private StockPriceService stockPriceService;
     private StockPriceChangeService stockPriceChangeService;
@@ -60,6 +60,13 @@ public class StockPriceUpdateScheduler {
             stockHistoryService.insertStockHistory(stockCurrentPriceDTO);
             stockPriceChangeService.publishPriceChange(stockCurrentPriceDTO);
         });
+        if(resetTime > 3600000){
+            // for aws tree tier capacity we remove
+            stockHistoryService.removeFirst100Record();
+            resetTime = 0;
+
+        }
+        resetTime += 4000;
         log.info("All Stocks is updated  at the time  {}", dateFormat.format(new Date()));
     }
 
