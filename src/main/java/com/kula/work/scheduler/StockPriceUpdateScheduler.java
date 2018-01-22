@@ -44,23 +44,27 @@ public class StockPriceUpdateScheduler {
         this.random = new Random();
     }
 
-    @Scheduled(fixedRate = 4000)
+    @Scheduled(fixedRate = 5000)
     public void updateStocksRandomly() {
         List<StockDTO>  allStockDTOS = stockService.getStockDTOS();
         allStockDTOS.forEach(stockDTO -> {
             StockCurrentPriceDTO  stockCurrentPriceDTO = stockPriceService.getStockCurrentPrice(stockDTO.getCode());
             if(stockCurrentPriceDTO.getPrice() == 0){
-                stockCurrentPriceDTO.setPrice(random.nextFloat()*100);
+                stockCurrentPriceDTO.setPrice(100 + random.nextFloat()*100);
                 stockCurrentPriceDTO.setCode(stockDTO.getCode());
             }else{
                 stockCurrentPriceDTO.setPrice(stockCurrentPriceDTO.getPrice() + (0.5f-random.nextFloat())*10);
+            }
+
+            if(stockCurrentPriceDTO.getPrice() < 0){
+                stockCurrentPriceDTO.setPrice(100f);
             }
             stockCurrentPriceDTO.setLastFetchTime(LocalDateTime.now());
             stockPriceService.updateStockPrice(stockCurrentPriceDTO);
             stockHistoryService.insertStockHistory(stockCurrentPriceDTO);
             stockPriceChangeService.publishPriceChange(stockCurrentPriceDTO);
         });
-        if(resetTime > 3600000){
+        if(resetTime > 7200000){
             // for aws tree tier capacity we remove
             stockHistoryService.removeFirst100Record();
             resetTime = 0;
