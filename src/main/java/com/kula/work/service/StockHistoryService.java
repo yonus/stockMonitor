@@ -39,5 +39,5 @@ public class StockHistoryService {
     }
 
     public void removeFirst100Record(){
-        mongoTemplate.remove(new Query().limit(1000),HISTORY_COLLECTION);
+        mongoTemplate.remove(new Query().limit(100000),HISTORY_COLLECTION);
     }}
